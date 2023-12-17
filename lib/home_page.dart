@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'assets/pin.png',
+                            'images/pin.png',
                             width: 20,
                           ),
                           const SizedBox(
@@ -212,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ]),
                     SizedBox(
-                      child: Image.asset('assets/$weatherIcon'),
+                      child: Image.asset('/images/heavycloud.png'),
                     )
                   ],
                 )),
