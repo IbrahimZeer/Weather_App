@@ -8,16 +8,16 @@ class CityWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("City Weather"),),
-      drawer: const CustomDrawer(),
-      body: Container(
-        child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context , i){
-
-          }
+        appBar: AppBar(
+          title: const Text("City Weather"),
         ),
-      )
-    );
+        drawer: const CustomDrawer(),
+        body: Container(
+          child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, i) {
+                return null;
+              }),
+        ));
   }
 }

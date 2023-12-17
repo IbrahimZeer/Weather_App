@@ -1,6 +1,3 @@
-import 'package:weather_app/city.dart';
-import 'package:weather_app/daily.dart';
-import 'package:weather_app/hourly.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
