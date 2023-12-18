@@ -2,22 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:weather_app/Modules/movie.dart';
+import 'package:weather_app/Modules/Weather.dart';
 import 'package:weather_app/drawer.dart';
 
-class DisplayMovie extends StatefulWidget {
+class DisplayWeather extends StatefulWidget {
   @override
-  State<DisplayMovie> createState() => _DisplayMovieState();
+  State<DisplayWeather> createState() => _DisplayWeatherState();
 }
 
-class _DisplayMovieState extends State<DisplayMovie> {
-  late Future<Movie> futureMovie;
-  Future<Movie> getData() async {
-    http.Response response = await http.get(Uri.parse("https://www.omdbapi.com/?t=The%20Lord%20of%20the%20Rings:%20The%20Fellowship%20of%20the%20Ring&apikey=501ca7ee"));
+class _DisplayWeatherState extends State<DisplayWeather> {
+  // late Future<Weather> futureWeather;
+  Future<Weather> getData() async {
+    http.Response response = await http.get(Uri.parse("http://api.weatherapi.com/v1/current.json?key=1a1b60f8101749309eb135952230912&q=London"));
     if (response.statusCode == 200){
       var jsonObject = jsonDecode(response.body);
-      Movie movie = Movie.fromJson(jsonObject);
-      return movie;
+      Weather weather = Weather.fromJson(jsonObject);
+      print(weather);
+      return weather;
     }
     else{
       throw Exception("Can't access the API!");
@@ -28,7 +29,6 @@ class _DisplayMovieState extends State<DisplayMovie> {
 @override
 void initState() {
   super.initState();
-  futureMovie = getData();
 }
 
   @override
@@ -37,25 +37,21 @@ void initState() {
       appBar: AppBar(title: const Text("weather app"),),
       drawer: const CustomDrawer(),
       body: FutureBuilder(
-          future: futureMovie,
-          builder: (context , snapshot){
-            if(snapshot.hasData){
-              Movie? movie = snapshot.data;
-              return ListView.builder(
-                // itemCount: snapshot.data!. ,
-                itemBuilder: (context , index){
-                  return ListTile(
-
-                  );
-                }
-              );
-            }else if (snapshot.hasError){
-              return const Text("Future");
-            }
-            else{
-              return const Center(child: CircularProgressIndicator(),);
-            }
+        future: getData(),
+        builder: (context , snap ) {
+          if(snap.hasData){
+            Weather? weather = snap.data;
+            return Center(child: Column(children: [
+              Text(weather!.name),
+              Text('${weather.temp}'),
+              Image.network(weather.icon)
+            ],),);
+          }else if (snap.hasError){
+            return Text("something went wrong");
+          }else {
+            return Center(child: CircularProgressIndicator(),);
           }
+        },
       ),
     );
   }

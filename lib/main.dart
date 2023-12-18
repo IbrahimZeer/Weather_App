@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: DisplayMovie(),
+      home: Scaffold(body:DisplayWeather(),),
       routes: {
-        'home':(context) => DisplayMovie(),
+        'home':(context) => DisplayWeather(),
         'hour':(context) => const HourlyForecast(),
         'day':(context) => const DailyForecast(),
         'city':(context) => const CityWeather(),
