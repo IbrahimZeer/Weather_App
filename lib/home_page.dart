@@ -212,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ]),
                     SizedBox(
-                      child: Image.asset('/images/heavycloud.png'),
+                      child: Image.asset('images/heavycloud.png'),
                     )
                   ],
                 )),
